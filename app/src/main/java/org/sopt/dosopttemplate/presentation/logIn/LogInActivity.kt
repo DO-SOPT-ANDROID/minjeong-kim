@@ -1,11 +1,9 @@
 package org.sopt.dosopttemplate.presentation.logIn
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.data.UserData
@@ -14,12 +12,12 @@ import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
 import org.sopt.dosopttemplate.util.Toast.makeToast
+import org.sopt.dosopttemplate.util.getParcelable
 
 class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private lateinit var userData: UserData
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,12 +26,11 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         initLogInBtnClickListener()
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun initSignUpActivityLauncher() {
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                userData = result.data?.getParcelableExtra(USER_DATA, UserData::class.java)!!
+                userData = result.data?.getParcelable(USER_DATA, UserData::class.java)!!
             }
         }
     }
