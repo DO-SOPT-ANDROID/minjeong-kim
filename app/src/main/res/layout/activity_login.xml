@@ -14,12 +14,13 @@
 
         <TextView
             android:id="@+id/tv_logIn_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/logIn_title"
             android:textSize="30dp"
             android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center_horizontal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -31,65 +32,59 @@
             android:text="@string/logIn_ID"
             android:textSize="20dp"
             android:layout_marginTop="50dp"
-            android:layout_marginStart="30dp"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_title"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/tv_logIn_title" />
 
         <EditText
             android:id="@+id/et_logIn_id"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="30dp"
             android:hint="@string/logIn_ID_hint"
             android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_id"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/tv_logIn_id"
+            app:layout_constraintEnd_toEndOf="@id/tv_logIn_title" />
 
         <TextView
             android:id="@+id/tv_logIn_pw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginHorizontal="30dp"
             android:text="@string/logIn_PW"
             android:textSize="20dp"
             app:layout_constraintTop_toBottomOf="@id/et_logIn_id"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/et_logIn_id" />
 
         <EditText
             android:id="@+id/et_logIn_pw"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="30dp"
             android:hint="@string/logIn_PW_hint"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_pw"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/tv_logIn_pw"
+            app:layout_constraintEnd_toEndOf="@id/tv_logIn_title" />
 
         <Button
             android:id="@+id/bt_logIn_doLogIn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="150dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/logIn_button_logIn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
+            app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"
+            app:layout_constraintBottom_toTopOf="@id/bt_logIn_doSignUp" />
 
         <Button
             android:id="@+id/bt_logIn_doSignUp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:layout_marginHorizontal="30dp"
             android:text="@string/logIn_button_signUp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
+            app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
