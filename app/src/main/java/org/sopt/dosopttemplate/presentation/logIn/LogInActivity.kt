@@ -30,7 +30,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                userData = result.data?.getParcelable(USER_DATA, UserData::class.java)!!
+                userData = result.data?.getParcelable(USER_DATA, UserData::class.java) ?: return@registerForActivityResult
             }
         }
     }
