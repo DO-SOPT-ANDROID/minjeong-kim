@@ -19,4 +19,7 @@
     <string name="signUp_bt_signUp">회원가입 하기</string>
     <string name="main_ID">ID</string>
     <string name="main_MBTI">MBTI</string>
+    <string name="menu_alternate">DO ANDROID</string>
+    <string name="menu_home">홈</string>
+    <string name="menu_myPage">마이페이지</string>
 </resources>
