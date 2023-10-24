@@ -2,7 +2,7 @@ package org.sopt.dosopttemplate.presentation.home
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment현
+import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
