@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.data.Profile
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendMusicBinding
-import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBinding
+import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBirthdayBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
 
 
@@ -18,7 +18,7 @@ class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>
 
     override fun getItemViewType(position: Int) = when (profileList[position]) {
         is Profile.MyProfile -> MY_PROFILE
-        is Profile.FriendOriginal -> FRIEND_ORIGINAL
+        is Profile.FriendBirthday -> FRIEND_ORIGINAL
         is Profile.FriendIncludeMusic -> FRIEND_INCLUDE_MUSIC
     }
 
@@ -31,7 +31,7 @@ class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>
                 HomeViewHolder.MyProfileViewHolder(binding)
             }
             FRIEND_ORIGINAL -> {
-                val binding = ItemHomeFriendOriginalBinding.inflate(inflater, parent, false)
+                val binding = ItemHomeFriendOriginalBirthdayBinding.inflate(inflater, parent, false)
                 HomeViewHolder.FriendViewHolder(binding)
             }
             else -> {
@@ -47,7 +47,7 @@ class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>
 
         when (holder) {
             is HomeViewHolder.MyProfileViewHolder -> holder.onBind(item as Profile.MyProfile)
-            is HomeViewHolder.FriendViewHolder -> holder.onBind(item as Profile.FriendOriginal)
+            is HomeViewHolder.FriendViewHolder -> holder.onBind(item as Profile.FriendBirthday)
             is HomeViewHolder.FriendMusicViewHolder -> holder.onBind(item as Profile.FriendIncludeMusic)
         }
     }

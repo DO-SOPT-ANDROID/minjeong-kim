@@ -9,10 +9,11 @@ sealed class Profile {
         val profile_message: String
     ) : Profile()
 
-    data class FriendOriginal(
+    data class FriendBirthday(
         val profile_img: String,
         val name: String,
-        val profile_message: String
+        val profile_message: String,
+        val birthday: String
     ) : Profile()
 
     data class FriendIncludeMusic(
