@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.home.home
 
 
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
+import org.sopt.dosopttemplate.presentation.home.mypage.MyPageFragment
+import org.sopt.dosopttemplate.presentation.home.doandroid.DoAndroidFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 

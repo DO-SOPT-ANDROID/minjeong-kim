@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.home.home
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

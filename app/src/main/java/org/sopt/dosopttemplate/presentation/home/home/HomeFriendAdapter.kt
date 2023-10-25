@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.home.home
 
 import android.content.Context
 import android.view.LayoutInflater

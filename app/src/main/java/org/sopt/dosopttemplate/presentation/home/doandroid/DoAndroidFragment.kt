@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.home.doandroid
 
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseFragment
