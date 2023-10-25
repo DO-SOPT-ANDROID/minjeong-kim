@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.sopt.dosopttemplate.data.Friend
-import org.sopt.dosopttemplate.databinding.ItemFriendOriginalBinding
+import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBinding
+
 
 class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeFriendAdapter.FriendViewHolder>() {
 
@@ -13,18 +15,18 @@ class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeFriendAdapt
 
     private var friendList: List<Friend> = emptyList()
 
-    inner class FriendViewHolder(private val binding: ItemFriendOriginalBinding) :
+    inner class FriendViewHolder(private val binding: ItemHomeFriendOriginalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(friendData: Friend) {
-            binding.imgItemOriginal.setImageResource(friendData.profile_img)
+            Glide.with(binding.root).load(friendData.profile_img).into(binding.imgItemOriginal)
             binding.tvItemOriginalName.text = friendData.name
             binding.tvItemOriginalMsg.text = friendData.profile_message
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
-        val binding = ItemFriendOriginalBinding.inflate(inflater, parent, false)
+        val binding = ItemHomeFriendOriginalBinding.inflate(inflater, parent, false)
         return FriendViewHolder(binding)
     }
 
