@@ -1,0 +1,34 @@
+{
+  "MyProfile" : [
+    {
+      "profile_img" : "https://www.ghibli.jp/gallery/karigurashi033.jpg",
+      "name" : "김민정",
+      "msg" : "내 깃허브 프로필 사진 주인공"
+    }
+  ],
+  "FriendOrignal" : [
+    {
+      "profile_img" : "https://www.ghibli.jp/gallery/karigurashi007.jpg",
+      "name" : "아리에띠1",
+      "msg" : "기분좋은 아리에띠"
+    },
+    {
+      "profile_img" : "https://www.ghibli.jp/gallery/karigurashi014.jpg",
+      "name" : "아리에띠2",
+      "msg" : "놀라는 아리에띠"
+    },
+    {
+      "profile_img" : "https://www.ghibli.jp/gallery/karigurashi018.jpg",
+      "name" : "아리에띠3",
+      "msg" : "나뭇잎 우산으로 쓴 거 맞음"
+    }
+  ],
+  "FriendIncludeMusic" : [
+    {
+      "profile_img" : "https://www.ghibli.jp/gallery/karigurashi046.jpg",
+      "name" : "아리에띠",
+      "msg" : "남주와 마지막 인사",
+      "music" : "마지막처럼 - 블랙핑크"
+    }
+  ]
+}
