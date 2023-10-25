@@ -12,6 +12,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initMakeHomeView()
+    }
+
+    private fun initMakeHomeView() {
         initMakeFragment()
         clickBottomNavigation()
     }
@@ -23,6 +27,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                 .add(R.id.fcv_home, HomeFragment())
                 .commit()
         }
+        binding.bnvHome.selectedItemId = R.id.menu_home
     }
 
     private fun clickBottomNavigation() {
