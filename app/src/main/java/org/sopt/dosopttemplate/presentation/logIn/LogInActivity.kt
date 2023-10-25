@@ -8,7 +8,7 @@ import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.data.UserData
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
-import org.sopt.dosopttemplate.presentation.main.MainActivity
+import org.sopt.dosopttemplate.presentation.home.home.HomeActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
 import org.sopt.dosopttemplate.util.Toast.makeToast
@@ -36,7 +36,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btLogInDoSignUp.setOnClickListener{
+        binding.btLogInDoSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             resultLauncher.launch(intent)
         }
@@ -50,7 +50,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun checkValidLogIn(): Boolean {
-        with (binding) {
+        with(binding) {
             return (userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
         }
     }
@@ -61,11 +61,12 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun sendUserData() {
-        intent = Intent(this, MainActivity::class.java)
-        with (binding) {
+        intent = Intent(this, HomeActivity::class.java)
+        with(binding) {
             intent.putExtra(
                 USER_DATA,
-                userData)
+                userData
+            )
         }
 
         startActivity(intent)

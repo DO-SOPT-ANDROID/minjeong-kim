@@ -13,15 +13,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initMakeMainView()
     }
 
-    private fun initMakeMainView() {
-        val userData = intent.getParcelable(LogInActivity.USER_DATA, UserData::class.java)
-        with (binding) {
-            tvMainNickName.text = userData?.nickName ?: ""
-            tvMainID.text = userData?.id ?: ""
-            tvMainMBTI.text = userData?.mbti ?: ""
-        }
-    }
 }
