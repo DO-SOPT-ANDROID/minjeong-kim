@@ -4,41 +4,66 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import org.sopt.dosopttemplate.data.Friend
+import org.sopt.dosopttemplate.data.Profile
+import org.sopt.dosopttemplate.databinding.ItemHomeFriendMusicBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBinding
+import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
 
 
-class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeFriendAdapter.FriendViewHolder>() {
+class HomeFriendAdapter(context: Context) : RecyclerView.Adapter<HomeViewHolder>() {
 
     private val inflater by lazy { LayoutInflater.from(context) }
 
-    private var friendList: List<Friend> = emptyList()
+    private var profileList: List<Profile> = emptyList()
 
-    inner class FriendViewHolder(private val binding: ItemHomeFriendOriginalBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    override fun getItemViewType(position: Int) = when (profileList[position]) {
+        is Profile.MyProfile -> MY_PROFILE
+        is Profile.FriendOriginal -> FRIEND_ORIGINAL
+        is Profile.FriendIncludeMusic -> FRIEND_INCLUDE_MUSIC
+    }
 
-        fun onBind(friendData: Friend) {
-            Glide.with(binding.root).load(friendData.profile_img).into(binding.imgItemOriginal)
-            binding.tvItemOriginalName.text = friendData.name
-            binding.tvItemOriginalMsg.text = friendData.profile_message
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+
+
+        return when (viewType) {
+            MY_PROFILE -> {
+                val binding = ItemHomeMyProfileBinding.inflate(inflater, parent, false)
+                HomeViewHolder.MyProfileViewHolder(binding)
+            }
+            FRIEND_ORIGINAL -> {
+                val binding = ItemHomeFriendOriginalBinding.inflate(inflater, parent, false)
+                HomeViewHolder.FriendViewHolder(binding)
+            }
+            else -> {
+                val binding = ItemHomeFriendMusicBinding.inflate(inflater, parent, false)
+                HomeViewHolder.FriendMusicViewHolder(binding)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
-        val binding = ItemHomeFriendOriginalBinding.inflate(inflater, parent, false)
-        return FriendViewHolder(binding)
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+
+        val item = profileList[position]
+
+        when (holder) {
+            is HomeViewHolder.MyProfileViewHolder -> holder.onBind(item as Profile.MyProfile)
+            is HomeViewHolder.FriendViewHolder -> holder.onBind(item as Profile.FriendOriginal)
+            is HomeViewHolder.FriendMusicViewHolder -> holder.onBind(item as Profile.FriendIncludeMusic)
+        }
     }
 
-    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
-        holder.onBind(friendList[position])
-    }
+    override fun getItemCount() = profileList.size
 
-    override fun getItemCount() = friendList.size
 
-    fun setFriendList(friendList: List<Friend>) {
-        this.friendList = friendList.toList()
+    fun setProfileList(profileList: List<Profile>) {
+        this.profileList = profileList.toList()
         notifyDataSetChanged()
+    }
+
+    companion object {
+        const val MY_PROFILE = 0
+        const val FRIEND_ORIGINAL = 1
+        const val FRIEND_INCLUDE_MUSIC = 2
     }
 
 }
