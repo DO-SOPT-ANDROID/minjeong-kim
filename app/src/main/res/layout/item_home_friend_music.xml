@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="item"
+            type="org.sopt.dosopttemplate.data.Profile.FriendIncludeMusic" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +74,7 @@
             app:layout_constraintBottom_toBottomOf="@id/cv_item_music"
             app:layout_constraintStart_toEndOf="@id/tv_item_friend_music_msg"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{item.music.isBlank() ? View.GONE : View.VISIBLE}"
             android:background="@drawable/bg_rect_green_line"
             tools:text="@string/home_item_music" />
 
