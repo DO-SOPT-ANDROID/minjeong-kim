@@ -76,7 +76,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{item.music.isBlank() ? View.GONE : View.VISIBLE}"
             android:background="@drawable/bg_rect_green_line"
-            tools:text="@string/home_item_music" />
+            tools:text="@string/home_item_music"
+            android:drawableEnd="@drawable/ic_play_green_24"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

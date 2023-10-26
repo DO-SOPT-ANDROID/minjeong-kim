@@ -75,7 +75,8 @@
             app:layout_constraintStart_toEndOf="@id/tv_item_original_msg"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/bg_rect_pink_line"
-            tools:text="@string/home_item_music"/>
+            tools:text="@string/home_item_music"
+            android:drawableEnd="@drawable/ic_gift_pink_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
