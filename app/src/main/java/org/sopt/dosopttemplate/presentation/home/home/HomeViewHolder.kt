@@ -1,25 +1,25 @@
 package org.sopt.dosopttemplate.presentation.home.home
 
-import android.widget.ImageView
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import org.sopt.dosopttemplate.data.Profile
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendMusicBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBirthdayBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
 import org.sopt.dosopttemplate.util.loadUrl
 
-sealed class HomeViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
+sealed class HomeViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
     class MyProfileViewHolder(private val binding: ItemHomeMyProfileBinding) :
         HomeViewHolder(binding) {
 
-        fun onBind(data : Profile.MyProfile) {
-            binding.item = data
-            binding.imgItemMyProfile.loadUrl(data.profile_img)
-            binding.tvItemMyName.text = data.name
-            binding.tvItemMyMsg.text = data.profile_message
+        fun onBind(data: Profile.MyProfile) {
+            with(binding) {
+                item = data
+                imgItemMyProfile.loadUrl(data.profile_img)
+                tvItemMyName.text = data.name
+                tvItemMyMsg.text = data.profile_message
+            }
         }
     }
 
@@ -27,10 +27,12 @@ sealed class HomeViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(b
         HomeViewHolder(binding) {
 
         fun onBind(data: Profile.FriendBirthday) {
-            binding.imgItemOriginal.loadUrl(data.profile_img)
-            binding.tvItemOriginalName.text = data.name
-            binding.tvItemOriginalMsg.text = data.profile_message
-            binding.tvItemOrigianlBirthday.text = data.birthday
+            with(binding) {
+                imgItemOriginal.loadUrl(data.profile_img)
+                tvItemOriginalName.text = data.name
+                tvItemOriginalMsg.text = data.profile_message
+                tvItemOrigianlBirthday.text = data.birthday
+            }
         }
     }
 
@@ -38,11 +40,13 @@ sealed class HomeViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(b
         HomeViewHolder(binding) {
 
         fun onBind(data: Profile.FriendIncludeMusic) {
-            binding.item = data
-            binding.imgItemMusic.loadUrl(data.profile_img)
-            binding.tvItemFriendMusicName.text = data.name
-            binding.tvItemFriendMusicMsg.text = data.profile_message
-            binding.tvItemFriendMusic.text = data.music
+            with(binding) {
+                item = data
+                imgItemMusic.loadUrl(data.profile_img)
+                tvItemFriendMusicName.text = data.name
+                tvItemFriendMusicMsg.text = data.profile_message
+                tvItemFriendMusic.text = data.music
+            }
         }
     }
 }

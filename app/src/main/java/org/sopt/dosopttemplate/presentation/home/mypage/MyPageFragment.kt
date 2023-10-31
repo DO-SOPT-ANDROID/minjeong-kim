@@ -6,7 +6,10 @@ import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseFragment
 import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
-class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_mypage) {
+class MyPageFragment : BaseFragment<FragmentMypageBinding>() {
+
+    override val layoutResId: Int
+        get() = R.layout.fragment_mypage
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

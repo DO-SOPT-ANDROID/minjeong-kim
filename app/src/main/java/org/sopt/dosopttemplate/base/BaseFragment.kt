@@ -9,9 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
-    Fragment() {
-    private var _binding: B? = null
+abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
+    @get:LayoutRes
+    abstract val layoutResId: Int
+
+    private var _binding: T? = null
     val binding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
