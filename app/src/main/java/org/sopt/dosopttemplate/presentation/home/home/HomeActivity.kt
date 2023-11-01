@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
-import org.sopt.dosopttemplate.data.UserData
+import org.sopt.dosopttemplate.data.entity.UserData
 import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
 import org.sopt.dosopttemplate.presentation.home.doandroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.home.mypage.MyPageFragment

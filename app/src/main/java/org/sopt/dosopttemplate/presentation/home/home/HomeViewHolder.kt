@@ -2,7 +2,7 @@ package org.sopt.dosopttemplate.presentation.home.home
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.dosopttemplate.data.Profile
+import org.sopt.dosopttemplate.data.entity.Profile
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendMusicBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBirthdayBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding

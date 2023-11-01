@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="item"
-            type="org.sopt.dosopttemplate.data.Profile.MyProfile" />
+            type="org.sopt.dosopttemplate.data.entity.Profile.MyProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
