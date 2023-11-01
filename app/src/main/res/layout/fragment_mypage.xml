@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/iv_main_image"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintDimensionRatio="1"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/main_image"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_main_nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@id/iv_main_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="nickName"/>
+
+        <TextView
+            android:id="@+id/tv_main_ID_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/main_ID"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_main_image" />
+
+        <TextView
+            android:id="@+id/tv_main_ID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_ID_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_ID_title"
+            tools:text="id"/>
+
+        <TextView
+            android:id="@+id/tv_main_MBTI_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_MBTI"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_ID_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_ID" />
+
+        <TextView
+            android:id="@+id/tv_main_MBTI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_ID_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_MBTI_title"
+            tools:text="mbti"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,32 @@
+package org.sopt.dosopttemplate.presentation.home.home
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.viewModels
+import org.sopt.dosopttemplate.R
+import org.sopt.dosopttemplate.base.BaseFragment
+import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
+
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
+    override val layoutResId: Int
+        get() = R.layout.fragment_home
+
+    private val homeViewModel by viewModels<HomeViewModel>()
+    private lateinit var friendAdapter: HomeFriendAdapter
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = homeViewModel
+
+        initMakeAdapter()
+
+    }
+
+    private fun initMakeAdapter() {
+        friendAdapter = HomeFriendAdapter(requireContext())
+        binding.rcvHome.adapter = friendAdapter
+        friendAdapter.setProfileList(homeViewModel.mockProfileList)
+    }
+
+}
