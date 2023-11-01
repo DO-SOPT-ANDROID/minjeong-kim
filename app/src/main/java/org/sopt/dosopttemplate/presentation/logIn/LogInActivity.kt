@@ -36,14 +36,14 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btLogInDoSignUp.setOnClickListener {
+        binding.btnLogInDoSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             resultLauncher.launch(intent)
         }
     }
 
     private fun initLogInBtnClickListener() {
-        binding.btLogInDoLogIn.setOnClickListener {
+        binding.btnLogInDoLogIn.setOnClickListener {
             if (checkValidLogIn()) doLogIn()
             else makeSnackBar(binding.root, MESSAGE_LOGIN_FAIL)
         }

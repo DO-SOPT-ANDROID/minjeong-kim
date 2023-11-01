@@ -20,7 +20,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btSignUpDoSignUp.setOnClickListener {
+        binding.btnSignUpDoSignUp.setOnClickListener {
             if (checkValidSignUp()) doSignUp()
             else makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
         }
