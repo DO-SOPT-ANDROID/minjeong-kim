@@ -32,7 +32,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         with(SharedPreference) {
             initSetSharedPreference(this@LogInActivity)
             if (isValidUserData()) {
-                doLogIn(getUserData())
+                sendUserData(getUserData())
             }
         }
     }
