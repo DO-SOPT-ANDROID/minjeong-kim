@@ -17,7 +17,7 @@ import org.sopt.dosopttemplate.util.getParcelable
 
 class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var userData: UserData
+    private var userData: UserData = UserData("", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun checkValidLogIn(): Boolean {
         with(binding) {
-            return (userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
+            return (userData.id.isNotBlank() && userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
         }
     }
 
