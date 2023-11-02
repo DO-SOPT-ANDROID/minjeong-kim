@@ -1,9 +1,7 @@
 package org.sopt.dosopttemplate.presentation.home.home
 
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
@@ -12,31 +10,14 @@ import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
 import org.sopt.dosopttemplate.presentation.home.doandroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.home.mypage.MyPageFragment
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
-import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
 import org.sopt.dosopttemplate.util.getParcelable
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
-    private var backPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initMakeHomeView()
-        initFinishApp()
-    }
-
-    private fun initFinishApp() {
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (System.currentTimeMillis() - backPressedTime >= 2000L) {
-                    backPressedTime = System.currentTimeMillis()
-                    makeSnackBar(binding.root, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
-                } else {
-                    finishAffinity()
-                }
-            }
-        }
-        )
     }
 
     private fun initMakeHomeView() {
