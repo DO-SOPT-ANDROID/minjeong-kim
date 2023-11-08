@@ -17,7 +17,7 @@ import org.sopt.dosopttemplate.util.getParcelable
 
 class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var userData: UserData = UserData("", "", "", "")
+    private var userData: UserData = UserData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

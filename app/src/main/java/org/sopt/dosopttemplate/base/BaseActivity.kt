@@ -22,7 +22,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
         binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.lifecycleOwner = this
 
-        initFinishApp()
+        initPressedBackBtn()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -35,7 +35,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
         inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 
-    private fun initFinishApp() {
+    private fun initPressedBackBtn() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (System.currentTimeMillis() - backPressedTime >= 2000L) {
