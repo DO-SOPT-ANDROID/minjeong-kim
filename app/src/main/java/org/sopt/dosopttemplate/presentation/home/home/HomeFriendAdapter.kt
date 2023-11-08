@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.dosopttemplate.data.Profile
+import org.sopt.dosopttemplate.data.entity.Profile
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendMusicBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendOriginalBirthdayBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding

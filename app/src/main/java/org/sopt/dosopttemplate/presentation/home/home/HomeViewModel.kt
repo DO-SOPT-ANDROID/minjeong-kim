@@ -1,7 +1,7 @@
 package org.sopt.dosopttemplate.presentation.home.home
 
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.data.Profile
+import org.sopt.dosopttemplate.data.entity.Profile
 
 class HomeViewModel : ViewModel() {
 

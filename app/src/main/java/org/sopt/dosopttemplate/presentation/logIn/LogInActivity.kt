@@ -6,7 +6,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
-import org.sopt.dosopttemplate.data.UserData
+import org.sopt.dosopttemplate.data.datasource.local.SharedPreference
+import org.sopt.dosopttemplate.data.entity.UserData
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.home.home.HomeActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
@@ -16,7 +17,7 @@ import org.sopt.dosopttemplate.util.getParcelable
 
 class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var userData: UserData
+    private var userData: UserData = UserData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,50 +25,61 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         initSignUpActivityLauncher()
         initSignUpBtnClickListener()
         initLogInBtnClickListener()
+        initSetAutoLogIn()
+    }
+
+    private fun initSetAutoLogIn() {
+        with(SharedPreference) {
+            initSetSharedPreference(this@LogInActivity)
+            if (isValidUserData()) {
+                sendUserData(getUserData())
+            }
+        }
     }
 
     private fun initSignUpActivityLauncher() {
         resultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result ->
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
             if (result.resultCode == RESULT_OK) {
-                userData = result.data?.getParcelable(USER_DATA, UserData::class.java) ?: return@registerForActivityResult
+                userData = result.data?.getParcelable(USER_DATA, UserData::class.java)
+                    ?: return@registerForActivityResult
+                SharedPreference.setUserData(userData)
             }
         }
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btLogInDoSignUp.setOnClickListener {
+        binding.btnLogInDoSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             resultLauncher.launch(intent)
         }
     }
 
     private fun initLogInBtnClickListener() {
-        binding.btLogInDoLogIn.setOnClickListener {
-            if (checkValidLogIn()) doLogIn()
+        binding.btnLogInDoLogIn.setOnClickListener {
+            if (checkValidLogIn()) doLogIn(userData)
             else makeSnackBar(binding.root, MESSAGE_LOGIN_FAIL)
         }
     }
 
     private fun checkValidLogIn(): Boolean {
         with(binding) {
-            return (userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
+            return (userData.id.isNotBlank() && userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
         }
     }
 
-    private fun doLogIn() {
+    private fun doLogIn(data: UserData) {
         makeToast(applicationContext, MESSAGE_LOGIN_SUCCESS)
-        sendUserData()
+        sendUserData(data)
     }
 
-    private fun sendUserData() {
+    private fun sendUserData(data: UserData) {
         intent = Intent(this, HomeActivity::class.java)
-        with(binding) {
-            intent.putExtra(
-                USER_DATA,
-                userData
-            )
-        }
+        intent.putExtra(
+            USER_DATA,
+            data
+        )
 
         startActivity(intent)
     }

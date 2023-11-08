@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
-import org.sopt.dosopttemplate.data.UserData
+import org.sopt.dosopttemplate.data.entity.UserData
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity.Companion.USER_DATA
@@ -20,7 +20,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btSignUpDoSignUp.setOnClickListener {
+        binding.btnSignUpDoSignUp.setOnClickListener {
             if (checkValidSignUp()) doSignUp()
             else makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
         }
@@ -50,7 +50,8 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
                     etSignUpPW.text.toString(),
                     etSignUpNickName.text.toString(),
                     etSignUpMBTI.text.toString()
-                ))
+                )
+            )
         }
         setResult(RESULT_OK, intent)
         finish()

@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="item"
-            type="org.sopt.dosopttemplate.data.Profile.FriendBirthday" />
+            type="org.sopt.dosopttemplate.data.entity.Profile.FriendBirthday" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

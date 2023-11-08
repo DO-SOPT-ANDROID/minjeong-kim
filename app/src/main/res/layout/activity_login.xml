@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/logIn_ID"
             android:textSize="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_title"
             app:layout_constraintStart_toStartOf="@id/tv_logIn_title" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/et_logIn_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:hint="@string/logIn_ID_hint"
             android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_id"
@@ -50,7 +50,7 @@
             android:id="@+id/tv_logIn_pw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/logIn_PW"
             android:textSize="20dp"
             app:layout_constraintTop_toBottomOf="@id/et_logIn_id"
@@ -60,7 +60,7 @@
             android:id="@+id/et_logIn_pw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:hint="@string/logIn_PW_hint"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@id/tv_logIn_pw"
@@ -68,20 +68,20 @@
             app:layout_constraintEnd_toEndOf="@id/tv_logIn_title" />
 
         <Button
-            android:id="@+id/bt_logIn_doLogIn"
+            android:id="@+id/btn_logIn_doLogIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/logIn_button_logIn"
             app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
             app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"
-            app:layout_constraintBottom_toTopOf="@id/bt_logIn_doSignUp" />
+            app:layout_constraintBottom_toTopOf="@id/btn_logIn_doSignUp" />
 
         <Button
-            android:id="@+id/bt_logIn_doSignUp"
+            android:id="@+id/btn_logIn_doSignUp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="40dp"
             android:text="@string/logIn_button_signUp"
             app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
             app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"

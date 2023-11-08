@@ -20,6 +20,7 @@
         </activity>
         <activity
             android:name=".presentation.logIn.LogInActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +30,7 @@
         </activity>
         <activity
             android:name=".presentation.signUp.SignUpActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false">
         </activity>
         <activity
