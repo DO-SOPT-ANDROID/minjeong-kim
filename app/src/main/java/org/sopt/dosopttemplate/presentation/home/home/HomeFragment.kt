@@ -32,7 +32,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     fun scrollToTop() {
-        binding.rcvHome.smoothScrollToPosition(0)
+        binding.rcvHome.smoothScrollToPosition(POSITION_TOP)
+    }
+
+    companion object {
+        const val POSITION_TOP = 0
     }
 
 }
