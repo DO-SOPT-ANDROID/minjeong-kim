@@ -8,4 +8,7 @@
     <color name="gray">#8F8F8E</color>
     <color name="blue">#2134A3</color>
     <color name="purple">#452778</color>
+
+    <color name="menu_1">#FAF7F2</color>
+    <color name="menu_2">#F5F5F5</color>
 </resources>
