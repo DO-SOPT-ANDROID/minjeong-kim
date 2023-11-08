@@ -7,7 +7,7 @@ import org.sopt.dosopttemplate.data.entity.Profile
 
 class HomeViewModel : ViewModel() {
 
-    private var _mockProfileList :  MutableLiveData<List<Profile>> = MutableLiveData(
+    private val _mockProfileList :  MutableLiveData<List<Profile>> = MutableLiveData(
         mutableListOf(
         Profile.MyProfile(
             "https://www.ghibli.jp/gallery/karigurashi033.jpg",

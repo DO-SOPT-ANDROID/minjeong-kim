@@ -31,4 +31,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
+    fun scrollToTop() {
+        binding.rcvHome.smoothScrollToPosition(0)
+    }
+
 }
