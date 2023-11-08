@@ -1,11 +1,14 @@
 package org.sopt.dosopttemplate.presentation.home.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.sopt.dosopttemplate.data.entity.Profile
 
 class HomeViewModel : ViewModel() {
 
-    private val _mockProfileList = listOf<Profile>(
+    private var _mockProfileList :  MutableLiveData<List<Profile>> = MutableLiveData(
+        mutableListOf(
         Profile.MyProfile(
             "https://www.ghibli.jp/gallery/karigurashi033.jpg",
             "김민정",
@@ -70,10 +73,10 @@ class HomeViewModel : ViewModel() {
             "토토로",
             "냥",
             "이웃집 토토로"
-        ),
+        ),)
     )
 
-    val mockProfileList : List<Profile>
+    val mockProfileList : LiveData<List<Profile>>
         get() = _mockProfileList
 
 }
