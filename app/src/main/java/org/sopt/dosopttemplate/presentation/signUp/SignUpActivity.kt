@@ -28,10 +28,10 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
 
     private fun checkValidSignUp(): Boolean {
         with (binding) {
-            return ((etSignUpID.length() in 6..10)
-                && (etSignUpPW.length() in 8..12)
-                && (etSignUpNickName.text.isNotBlank())
-                && (etSignUpMBTI.text.isNotBlank()))
+            return ((edtSignUpID.length() in 6..10)
+                && (edtSignUpPW.length() in 8..12)
+                && (!edtSignUpNickName.text.isNullOrBlank())
+                && (!edtSignUpMBTI.text.isNullOrBlank()))
         }
     }
 
@@ -46,10 +46,10 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
             intent.putExtra(
                 USER_DATA,
                 UserData(
-                    etSignUpID.text.toString(),
-                    etSignUpPW.text.toString(),
-                    etSignUpNickName.text.toString(),
-                    etSignUpMBTI.text.toString()
+                    edtSignUpID.text.toString(),
+                    edtSignUpPW.text.toString(),
+                    edtSignUpNickName.text.toString(),
+                    edtSignUpMBTI.text.toString()
                 )
             )
         }
