@@ -23,11 +23,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     private fun initMakeHomeView() {
         initMakeFragment()
         clickBottomNavigation()
+        doubleClickBottomNavigation()
     }
 
     private fun initMakeFragment() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
-        if (currentFragment == null ) {
+        if (currentFragment == null) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fcv_home, HomeFragment())
                 .commit()
@@ -36,24 +37,32 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private fun clickBottomNavigation() {
-        binding.bnvHome.setOnItemSelectedListener{
+        binding.bnvHome.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_home-> {
+                R.id.menu_home -> {
                     replaceFragment(HomeFragment())
                     true
                 }
 
-                R.id.menu_do_android-> {
+                R.id.menu_do_android -> {
                     replaceFragment(DoAndroidFragment())
                     true
                 }
 
-                R.id.menu_myPage-> {
+                R.id.menu_myPage -> {
                     makeMyPageView()
                     true
                 }
 
                 else -> false
+            }
+        }
+    }
+
+    private fun doubleClickBottomNavigation() {
+        binding.bnvHome.setOnItemReselectedListener {
+            supportFragmentManager.findFragmentById(R.id.fcv_home).let { currentFragment ->
+                if (currentFragment is HomeFragment) currentFragment.scrollToTop()
             }
         }
     }

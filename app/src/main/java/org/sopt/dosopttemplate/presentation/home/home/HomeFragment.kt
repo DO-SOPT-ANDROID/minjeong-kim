@@ -26,7 +26,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initMakeAdapter() {
         friendAdapter = HomeFriendAdapter(requireContext())
         binding.rcvHome.adapter = friendAdapter
-        friendAdapter.setProfileList(homeViewModel.mockProfileList)
+        homeViewModel.mockProfileList.observe(viewLifecycleOwner) {
+            friendAdapter.submitList(it)
+        }
+    }
+
+    fun scrollToTop() {
+        binding.rcvHome.smoothScrollToPosition(POSITION_TOP)
+    }
+
+    companion object {
+        const val POSITION_TOP = 0
     }
 
 }
