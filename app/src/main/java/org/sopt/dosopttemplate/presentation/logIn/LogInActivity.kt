@@ -65,7 +65,7 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun checkValidLogIn(): Boolean {
         with(binding) {
-            return (userData.id.isNotBlank() && userData.id == etLogInId.text.toString() && userData.pw == etLogInPw.text.toString())
+            return (userData.id.isNotBlank() && userData.id == edtLogInId.text.toString() && userData.pw == edtLogInPw.text.toString())
         }
     }
 
