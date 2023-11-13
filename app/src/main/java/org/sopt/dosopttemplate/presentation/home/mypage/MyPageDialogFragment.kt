@@ -18,7 +18,7 @@ class MyPageDialogFragment : BaseDialogFragment<FragmentMypageDialogBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         initMakeDialogCancelable()
-        initSetCancleBtn()
+        initSetCancelBtn()
         initSetConfirmBtn()
     }
 
@@ -27,7 +27,7 @@ class MyPageDialogFragment : BaseDialogFragment<FragmentMypageDialogBinding>() {
         dialog?.setCanceledOnTouchOutside(true)
     }
 
-    private fun initSetCancleBtn() {
+    private fun initSetCancelBtn() {
         binding.tvDialogCancel.setOnClickListener {
             dismiss()
         }
