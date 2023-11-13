@@ -26,7 +26,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_home"/>
+            app:menu="@menu/menu_home"
+            app:itemIconTint="@color/selector_menu_home"
+            app:itemTextColor="@color/selector_menu_home"
+            app:labelVisibilityMode="selected"
+            android:background="@drawable/bnv_menu_round"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
