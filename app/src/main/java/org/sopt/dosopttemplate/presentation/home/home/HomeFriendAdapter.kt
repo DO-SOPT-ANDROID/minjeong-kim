@@ -13,7 +13,7 @@ import org.sopt.dosopttemplate.util.ItemDiffCallback
 
 class HomeFriendAdapter(context: Context) : ListAdapter<Profile, HomeViewHolder>(
     ItemDiffCallback<Profile>(
-        onItemsTheSame = { old, new -> old == new },
+        onItemsTheSame = { old, new -> old.id == new.id },
         onContentsTheSame = { old, new -> old == new }
     )
 ) {
