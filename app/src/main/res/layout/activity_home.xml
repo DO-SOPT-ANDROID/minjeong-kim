@@ -27,8 +27,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_home"
-            app:itemIconTint="@drawable/selector_menu_home"
-            app:itemTextColor="@drawable/selector_menu_home"
+            app:itemIconTint="@color/selector_menu_home"
+            app:itemTextColor="@color/selector_menu_home"
             app:labelVisibilityMode="selected"
             android:background="@drawable/bnv_menu_round"/>
 
