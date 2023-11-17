@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FollowerViewModel @Inject constructor(
     private val repository: FollowerRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _followerList = MutableLiveData<List<FollowerList.FollowerListData>>()
     val followerList: LiveData<List<FollowerList.FollowerListData>>
@@ -26,7 +26,7 @@ class FollowerViewModel @Inject constructor(
                 Log.d("follower viewModel: ", "연결 성공")
                 _followerList.value = response.data.toList()
             }.onFailure {
-             Log.d("follower viewModel: ", "연결 실패")
+                Log.d("follower viewModel: ", "연결 실패")
             }
         }
     }

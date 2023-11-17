@@ -1,7 +1,6 @@
 package org.sopt.dosopttemplate.presentation.logIn
 
 import android.util.Log
-import androidx.core.widget.ListViewAutoScrollHelper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LogInViewModel @Inject constructor(
     private val repository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
 
     val username: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
@@ -38,7 +37,7 @@ class LogInViewModel @Inject constructor(
             ).onSuccess { data ->
                 _signInAuthData.value = data
                 _signInEnabled.value = true
-            }. onFailure {
+            }.onFailure {
                 Log.d("signIn viewModel: ", "실패")
                 _signInEnabled.value = false
             }

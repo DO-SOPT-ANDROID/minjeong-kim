@@ -10,7 +10,7 @@ import org.sopt.dosopttemplate.base.BaseFragment
 import org.sopt.dosopttemplate.databinding.FragmentFollowerBinding
 
 @AndroidEntryPoint
-class FollowerFragment: BaseFragment<FragmentFollowerBinding>() {
+class FollowerFragment : BaseFragment<FragmentFollowerBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.fragment_follower

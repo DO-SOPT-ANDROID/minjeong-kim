@@ -8,12 +8,13 @@ import org.sopt.dosopttemplate.data.entity.FollowerList
 import org.sopt.dosopttemplate.databinding.ItemFollowerFollowerListBinding
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class FollowerAdapter(context: Context) : ListAdapter<FollowerList.FollowerListData, FollowerViewHolder>(
-    ItemDiffCallback<FollowerList.FollowerListData>(
-        onItemsTheSame = { old, new -> old.id == new.id },
-        onContentsTheSame = { old, new -> old == new }
-    )
-) {
+class FollowerAdapter(context: Context) :
+    ListAdapter<FollowerList.FollowerListData, FollowerViewHolder>(
+        ItemDiffCallback<FollowerList.FollowerListData>(
+            onItemsTheSame = { old, new -> old.id == new.id },
+            onContentsTheSame = { old, new -> old == new }
+        )
+    ) {
 
     private val inflater by lazy { LayoutInflater.from(context) }
 

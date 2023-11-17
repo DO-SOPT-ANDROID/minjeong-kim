@@ -15,9 +15,6 @@ class AuthRepositoryImpl @Inject constructor(
         nickname: String,
         password: String
     ): Result<Unit> = runCatching {
-        Log.d("viewModel username4: ", username)
-        Log.d("viewModel nickname4: ", nickname)
-        Log.d("viewModel password4: ", password)
         authDataSource.doSignUp(
             username,
             nickname,

@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val repository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
 
     val username: MutableLiveData<String> = MutableLiveData()
     val nickname: MutableLiveData<String> = MutableLiveData()
@@ -30,9 +30,11 @@ class SignUpViewModel @Inject constructor(
                 && !mbti.value.isNullOrBlank()
     }
 
-    fun isUserNameValid(): Boolean = username.value?.length in 6..10 && !username.value.isNullOrBlank()
+    private fun isUserNameValid(): Boolean =
+        username.value?.length in 6..10 && !username.value.isNullOrBlank()
 
-    fun isPassWordValid(): Boolean = password.value?.length in 8..12 && !password.value.isNullOrBlank()
+    private fun isPassWordValid(): Boolean =
+        password.value?.length in 8..12 && !password.value.isNullOrBlank()
 
     fun doSignUp(
         username: String,
@@ -40,22 +42,14 @@ class SignUpViewModel @Inject constructor(
         password: String
     ) {
         viewModelScope.launch {
-            Log.d("viewModel username2: ", username)
-            Log.d("viewModel nickname2: ", nickname)
-            Log.d("viewModel password2: ", password)
             repository.doSignUp(
                 username,
                 nickname,
                 password
             ).onSuccess { response ->
-                //
-                Log.d("viewModel username3: ", username)
-                Log.d("viewModel nickname3: ", nickname)
-                Log.d("viewModel password3: ", password)
                 _signUpEnabled.value = true
                 Log.d("signUp viewModel: ", "${_signUpEnabled.value}")
             }.onFailure {
-                //
                 _signUpEnabled.value = false
                 Log.d("signUp viewModel: ", "실패")
             }
