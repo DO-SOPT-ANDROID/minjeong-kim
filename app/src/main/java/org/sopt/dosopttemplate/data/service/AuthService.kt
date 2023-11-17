@@ -9,5 +9,5 @@ interface AuthService {
     @POST("api/v1/members")
     suspend fun doSignUp(
         @Body requestSignUp: RequestSignUpDto
-    ): Unit
+    )
 }

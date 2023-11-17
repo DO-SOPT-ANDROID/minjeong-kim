@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="org.sopt.dosopttemplate.presentation.signUp.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +72,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/signUp_ID_hint"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={viewModel.username}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +110,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/signUp_PW_hint"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={viewModel.password}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +148,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/signUp_nickName_hint"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={viewModel.nickname}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,7 +186,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/signUp_MBTI_hint"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={viewModel.mbti}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

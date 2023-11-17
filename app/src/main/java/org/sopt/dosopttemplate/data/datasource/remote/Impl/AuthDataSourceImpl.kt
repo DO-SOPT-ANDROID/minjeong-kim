@@ -13,12 +13,11 @@ class AuthDataSourceImpl @Inject constructor(
         username: String,
         nickname: String,
         password: String
-    ): Unit =
-        authService.doSignUp(
+    ): Unit = authService.doSignUp(
             RequestSignUpDto(
-                username,
-                nickname,
-                password
+                username = username,
+                nickname = nickname,
+                password = password
             )
         )
 }

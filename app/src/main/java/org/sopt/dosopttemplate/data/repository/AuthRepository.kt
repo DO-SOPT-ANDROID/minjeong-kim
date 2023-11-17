@@ -4,7 +4,7 @@ import android.provider.ContactsContract.CommonDataKinds.Nickname
 
 interface AuthRepository {
 
-    suspend fun doLogIn(
+    suspend fun doSignUp(
         username: String,
         nickname: String,
         password: String

@@ -9,11 +9,14 @@ class AuthRepositoryImpl @Inject constructor(
     private val authDataSource: AuthDataSource
 ): AuthRepository {
 
-    override suspend fun doLogIn(
+    override suspend fun doSignUp(
         username: String,
         nickname: String,
         password: String
     ): Result<Unit> = runCatching {
+        Log.d("viewModel username4: ", username)
+        Log.d("viewModel nickname4: ", nickname)
+        Log.d("viewModel password4: ", password)
         authDataSource.doSignUp(
             username,
             nickname,
