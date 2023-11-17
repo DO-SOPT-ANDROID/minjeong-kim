@@ -14,5 +14,5 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun providesAuthRepository(repoImpl: FollowerRepositoryImpl): FollowerRepository
+    abstract fun providesReqresRepository(repoImpl: FollowerRepositoryImpl): FollowerRepository
 }

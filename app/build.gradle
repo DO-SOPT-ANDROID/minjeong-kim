@@ -8,8 +8,10 @@ plugins {
     // serialization
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
 }
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'org.sopt.dosopttemplate'
     compileSdk 33
@@ -91,7 +93,7 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 }
-// hilt dependency와 함께 추가
+// hilt dependency
 kapt {
     correctErrorTypes true
 }

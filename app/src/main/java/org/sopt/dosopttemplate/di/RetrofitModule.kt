@@ -7,11 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONArray
-import org.json.JSONObject
 import org.sopt.dosopttemplate.BuildConfig
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -26,20 +25,21 @@ object RetrofitModule {
     @Provides
     @Singleton
     @DoSoptRetrofit
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor
+    fun provideOkHttpClient(@DoSoptRetrofit interceptor: Interceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(interceptor)
             .build()
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        val loggingInterceptor = HttpLoggingInterceptor { message ->
-            Log.d("retrofit", "CONNECTION INFO -> $message")
+    @DoSoptRetrofit
+    fun provideLoggingInterceptor(): Interceptor {
+        val interceptor = HttpLoggingInterceptor { message ->
+            Log.d("retrofit message", message)
         }
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        return loggingInterceptor
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return interceptor
     }
 
     @Singleton

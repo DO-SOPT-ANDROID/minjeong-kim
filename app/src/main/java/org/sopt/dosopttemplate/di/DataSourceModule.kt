@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class DataSourceModule {
     @Singleton
     @Binds
-    abstract fun providesAuthDataSource(DataSourceImpl: FollowerDataSourceImpl): FollowerDataSource
+    abstract fun providesReqresDataSource(DataSourceImpl: FollowerDataSourceImpl): FollowerDataSource
 }

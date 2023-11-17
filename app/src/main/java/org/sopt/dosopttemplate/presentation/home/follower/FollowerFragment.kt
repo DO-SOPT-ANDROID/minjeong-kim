@@ -1,6 +1,7 @@
 package org.sopt.dosopttemplate.presentation.home.follower
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,8 +26,11 @@ class FollowerFragment: BaseFragment<FragmentFollowerBinding>() {
     }
 
     private fun initMakeAdapter() {
+        Log.d("follower fragment: ", "test")
         followerAdapter = FollowerAdapter(requireContext())
         binding.rcvFollower.adapter = followerAdapter
+
+        followerViewModel.getFollowerList()
 
         followerViewModel.followerList.observe(viewLifecycleOwner) {
             followerAdapter.submitList(it)
