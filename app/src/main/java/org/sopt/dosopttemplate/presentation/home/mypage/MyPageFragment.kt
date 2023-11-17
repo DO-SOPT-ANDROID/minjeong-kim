@@ -2,10 +2,12 @@ package org.sopt.dosopttemplate.presentation.home.mypage
 
 import android.os.Bundle
 import android.view.View
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseFragment
 import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
+@AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMypageBinding>() {
 
     override val layoutResId: Int
