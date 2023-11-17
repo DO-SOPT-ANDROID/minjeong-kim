@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="" />
+            type="org.sopt.dosopttemplate.presentation.home.follower.FollowerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
