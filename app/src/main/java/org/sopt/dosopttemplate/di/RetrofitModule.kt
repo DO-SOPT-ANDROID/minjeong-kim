@@ -24,19 +24,41 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    @DoSoptRetrofit
-    fun provideOkHttpClient(@DoSoptRetrofit interceptor: Interceptor
+    @ReqresRetrofit
+    fun provideReqresOkHttpClient(
+        @ReqresRetrofit reqresInterceptor: Interceptor,
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(interceptor)
+            .addInterceptor(reqresInterceptor)
             .build()
 
     @Provides
     @Singleton
-    @DoSoptRetrofit
-    fun provideLoggingInterceptor(): Interceptor {
+    @AuthRetrofit
+    fun provideAuthOkHttpClient(
+        @AuthRetrofit authInterceptor: Interceptor,
+    ): OkHttpClient =
+        OkHttpClient.Builder()
+            .addInterceptor(authInterceptor)
+            .build()
+
+    @Provides
+    @Singleton
+    @ReqresRetrofit
+    fun provideReqresInterceptor(): Interceptor {
         val interceptor = HttpLoggingInterceptor { message ->
-            Log.d("retrofit message", message)
+            Log.d("retrofit reqres message", message)
+        }
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return interceptor
+    }
+
+    @Provides
+    @Singleton
+    @AuthRetrofit
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        val interceptor = HttpLoggingInterceptor { message ->
+            Log.d("retrofit auth message", message)
         }
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
@@ -44,11 +66,21 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    @DoSoptRetrofit
-    fun provideReqresRetrofit(@DoSoptRetrofit okHttpClient: OkHttpClient): Retrofit =
+    @ReqresRetrofit
+    fun provideReqresRetrofit(@ReqresRetrofit okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .baseUrl(REQRES_BASE_URL)
+            .client(okHttpClient)
+            .build()
+
+    @Singleton
+    @Provides
+    @AuthRetrofit
+    fun provideAuthRetrofit(@AuthRetrofit okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .baseUrl(AUTH_BASE_URL)
             .client(okHttpClient)
             .build()
 }
