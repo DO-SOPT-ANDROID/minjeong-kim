@@ -4,8 +4,8 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class ReqresRetrofit
+annotation class AuthRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class AuthRetrofit
+annotation class ReqresRetrofit
