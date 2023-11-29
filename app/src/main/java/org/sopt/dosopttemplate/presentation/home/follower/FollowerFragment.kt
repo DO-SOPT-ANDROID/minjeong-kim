@@ -16,7 +16,9 @@ class FollowerFragment : BaseFragment<FragmentFollowerBinding>() {
         get() = R.layout.fragment_follower
 
     private val followerViewModel by viewModels<FollowerViewModel>()
-    private lateinit var followerAdapter: FollowerAdapter
+    private var _followerAdapter: FollowerAdapter? = null
+    private val followerAdapter
+        get() = requireNotNull(_followerAdapter)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,8 +28,7 @@ class FollowerFragment : BaseFragment<FragmentFollowerBinding>() {
     }
 
     private fun initMakeAdapter() {
-        Log.d("follower fragment: ", "test")
-        followerAdapter = FollowerAdapter(requireContext())
+        _followerAdapter = FollowerAdapter(requireContext())
         binding.rcvFollower.adapter = followerAdapter
 
         followerViewModel.getFollowerList()
