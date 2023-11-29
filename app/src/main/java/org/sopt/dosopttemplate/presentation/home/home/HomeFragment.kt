@@ -15,7 +15,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         get() = R.layout.fragment_home
 
     private val homeViewModel by viewModels<HomeViewModel>()
-    private lateinit var friendAdapter: HomeFriendAdapter
+    private var _friendAdapter: HomeFriendAdapter? = null
+    private val friendAdapter
+        get() = requireNotNull(_friendAdapter)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initMakeAdapter() {
-        friendAdapter = HomeFriendAdapter(requireContext())
+        _friendAdapter = HomeFriendAdapter(requireContext())
         binding.rcvHome.adapter = friendAdapter
         homeViewModel.mockProfileList.observe(viewLifecycleOwner) {
             friendAdapter.submitList(it)

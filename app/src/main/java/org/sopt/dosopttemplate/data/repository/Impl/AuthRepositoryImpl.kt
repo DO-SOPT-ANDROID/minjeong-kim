@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authDataSource: AuthDataSource
-): AuthRepository {
+) : AuthRepository {
 
     override suspend fun doSignUp(
         username: String,
@@ -20,11 +20,16 @@ class AuthRepositoryImpl @Inject constructor(
             nickname,
             password
         )
-    }.onSuccess {
-        Log.d("auth repository: ", "성공")
-    }.onFailure {
-        Log.d("auth repository: ", "실패")
-    }
+    }.fold(
+        onSuccess = {
+            Log.d(AUTH_TAG, MSG_SUCCESS)
+            Result.success(Unit)
+        },
+        onFailure = {
+            Log.d(AUTH_TAG, MSG_FAILURE)
+            Result.failure(it)
+        }
+    )
 
     override suspend fun doSignIn(
         username: String,
@@ -33,12 +38,13 @@ class AuthRepositoryImpl @Inject constructor(
         authDataSource.doSignIn(
             username,
             password
-        )
-    }.map { data ->
-        AuthData(data.id.toString(), data.username, data.nickname)
-    }.onSuccess {
-        Log.d("auth repository: ", "성공")
-    }.onFailure {
-        Log.d("auth repository: ", "실패")
+        ).getAuthData()
     }
+
+    companion object {
+        const val AUTH_TAG = "auth repository: "
+        const val MSG_SUCCESS = "성공"
+        const val MSG_FAILURE = "실패"
+    }
+
 }

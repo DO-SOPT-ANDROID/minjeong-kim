@@ -8,13 +8,25 @@ import javax.inject.Inject
 
 class FollowerRepositoryImpl @Inject constructor(
     private val followerDataSource: FollowerDataSource
-): FollowerRepository {
+) : FollowerRepository {
 
-    override suspend fun getFollowerList(): Result<FollowerList> = runCatching {
+    override suspend fun getFollowerList()
+            : Result<FollowerList> = runCatching {
         followerDataSource.getFollowerList()
-    }.onSuccess {
-        Log.d("follower repository: ", "성공")
-    }.onFailure {
-        Log.d("follower repository: ", "실패")
+    }.fold(
+        onSuccess = {
+            Log.d(FOLLOWER_TAG, MSG_SUCCESS)
+            Result.success(followerDataSource.getFollowerList())
+        },
+        onFailure = {
+            Log.d(FOLLOWER_TAG, MSG_FAILURE)
+            Result.failure(it)
+        }
+    )
+
+    companion object {
+        const val FOLLOWER_TAG = "follower repository: "
+        const val MSG_SUCCESS = "성공"
+        const val MSG_FAILURE = "실패"
     }
 }
