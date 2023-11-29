@@ -7,18 +7,8 @@ import javax.inject.Inject
 
 class FollowerDataSourceImpl @Inject constructor(
     private val followerService: FollowerService
-): FollowerDataSource {
+) : FollowerDataSource {
 
     override suspend fun getFollowerList(): FollowerList =
-        FollowerList(
-            followerService.getFollowerList().data.map { data ->
-                FollowerList.FollowerListData(
-                    data.id,
-                    data.email,
-                    data.firstName,
-                    data.lastName,
-                    data.avatar
-                )
-            }
-        )
+        FollowerList(followerService.getFollowerList().getFollowerData())
 }
