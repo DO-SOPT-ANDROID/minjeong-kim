@@ -12,6 +12,11 @@
         android:title="@string/menu_home" />
 
     <item
+        android:id="@+id/menu_follower"
+        android:icon="@drawable/icon_follower_white_24"
+        android:title="@string/menu_follower" />
+
+    <item
         android:id="@+id/menu_myPage"
         android:icon="@drawable/ic_person_white_24"
         android:title="@string/menu_myPage" />

@@ -2,20 +2,30 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+    // hilt
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    // serialization
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'org.sopt.dosopttemplate'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "org.sopt.dosopttemplate"
         minSdk 28
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
+        buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
     }
 
     buildTypes {
@@ -25,33 +35,65 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
     buildFeatures {
         dataBinding true
         viewBinding true
+        buildConfig true
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.12.0'
+    // app compat
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.10.0'
+    // material
+    implementation 'com.google.android.material:material:1.7.0'
+    // constraint layout
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.android.identity:identity-credential:+'
+    // test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    // ktx
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation "androidx.fragment:fragment-ktx:1.6.0"
+    implementation 'androidx.activity:activity-ktx:1.7.2'
+    // recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+    // network
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11"
+    implementation "com.google.code.gson:gson:2.10.1"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // okhttp
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:okhttp-bom:4.10.0"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+    // serialization
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+    //viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
-
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
-
-    implementation "androidx.fragment:fragment-ktx:1.6.1"
-    implementation "androidx.activity:activity-ktx:1.8.0"
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+}
+// hilt dependency
+kapt {
+    correctErrorTypes true
 }

@@ -3,12 +3,14 @@ package org.sopt.dosopttemplate.presentation.home.mypage
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseDialogFragment
 import org.sopt.dosopttemplate.data.datasource.local.SharedPreference
 import org.sopt.dosopttemplate.databinding.FragmentMypageDialogBinding
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
 
+@AndroidEntryPoint
 class MyPageDialogFragment : BaseDialogFragment<FragmentMypageDialogBinding>() {
 
     override val layoutResId: Int

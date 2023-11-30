@@ -2,16 +2,20 @@ package org.sopt.dosopttemplate.presentation.home.home
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.data.entity.UserData
 import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
 import org.sopt.dosopttemplate.presentation.home.doandroid.DoAndroidFragment
+import org.sopt.dosopttemplate.presentation.home.follower.FollowerFragment
 import org.sopt.dosopttemplate.presentation.home.mypage.MyPageFragment
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
 import org.sopt.dosopttemplate.util.getParcelable
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
                 R.id.menu_myPage -> {
                     makeMyPageView()
+                    true
+                }
+
+                R.id.menu_follower -> {
+                    replaceFragment(FollowerFragment())
                     true
                 }
 

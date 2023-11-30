@@ -2,57 +2,49 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
-import org.sopt.dosopttemplate.data.entity.UserData
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
-import org.sopt.dosopttemplate.presentation.logIn.LogInActivity.Companion.USER_DATA
 import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
-import org.sopt.dosopttemplate.util.Toast.makeToast
 
+@AndroidEntryPoint
 class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_signup) {
+
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.viewModel = viewModel
 
         initSignUpBtnClickListener()
+        initObserveSignUpEnabled()
     }
 
     private fun initSignUpBtnClickListener() {
         binding.btnSignUpDoSignUp.setOnClickListener {
-            if (checkValidSignUp()) doSignUp()
+            if (viewModel.isSignUpValid()) {
+                viewModel.doSignUp(
+                    viewModel.username.value.toString(),
+                    viewModel.nickname.value.toString(),
+                    viewModel.password.value.toString()
+                )
+            } else makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
+        }
+    }
+
+    private fun initObserveSignUpEnabled() {
+        viewModel.signUpEnabled.observe(this) { response ->
+            if (response) doSignUp()
             else makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
         }
     }
 
-    private fun checkValidSignUp(): Boolean {
-        with (binding) {
-            return ((edtSignUpID.length() in 6..10)
-                && (edtSignUpPW.length() in 8..12)
-                && (!edtSignUpNickName.text.isNullOrBlank())
-                && (!edtSignUpMBTI.text.isNullOrBlank()))
-        }
-    }
-
     private fun doSignUp() {
-        makeToast(applicationContext, MESSAGE_SIGNUP_SUCCESS)
-        sendSignUpData()
-    }
-
-    private fun sendSignUpData() {
-        val intent: Intent = Intent(this, LogInActivity::class.java)
-        with (binding) {
-            intent.putExtra(
-                USER_DATA,
-                UserData(
-                    edtSignUpID.text.toString(),
-                    edtSignUpPW.text.toString(),
-                    edtSignUpNickName.text.toString(),
-                    edtSignUpMBTI.text.toString()
-                )
-            )
-        }
+        val intent = Intent(this, LogInActivity::class.java)
         setResult(RESULT_OK, intent)
         finish()
     }
