@@ -2,12 +2,14 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.data.repository.AuthRepository
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +25,13 @@ class SignUpViewModel @Inject constructor(
     private val _signUpEnabled = MutableLiveData<Boolean>()
     val signUpEnabled: LiveData<Boolean> = _signUpEnabled
 
+    val checkBtnEnabled = MediatorLiveData<Boolean>().apply {
+        addSource(username) { value = isSignUpValid() }
+        addSource(nickname) { value = isSignUpValid() }
+        addSource(password) { value = isSignUpValid() }
+        addSource(mbti) { value = isSignUpValid() }
+    }
+
     fun isSignUpValid(): Boolean {
         return isUserNameValid()
                 && isPassWordValid()
@@ -30,11 +39,15 @@ class SignUpViewModel @Inject constructor(
                 && !mbti.value.isNullOrBlank()
     }
 
-    private fun isUserNameValid(): Boolean =
-        username.value?.length in 6..10 && !username.value.isNullOrBlank()
+    fun isUserNameValid(): Boolean {
+        val usernameMatcher = USERNAME_PATTERN.matcher(username.value.orEmpty())
+        return username.value.isNullOrBlank() || usernameMatcher.find()
+    }
 
-    private fun isPassWordValid(): Boolean =
-        password.value?.length in 8..12 && !password.value.isNullOrBlank()
+    fun isPassWordValid(): Boolean {
+        val passwordMatcher = PASSWORD_PATTERN.matcher(password.value.orEmpty())
+        return password.value.isNullOrBlank() || passwordMatcher.find()
+    }
 
     fun doSignUp(
         username: String,
@@ -54,5 +67,12 @@ class SignUpViewModel @Inject constructor(
                 Log.d("signUp viewModel: ", "실패")
             }
         }
+    }
+
+    companion object {
+        const val USERNAME_REGEX = "^(?=.*[0-9])(?=.*[a-zA-Z]).{6,10}\$"
+        const val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^+\\-=]).{6,12}\$"
+        val USERNAME_PATTERN: Pattern = Pattern.compile(USERNAME_REGEX)
+        val PASSWORD_PATTERN: Pattern = Pattern.compile(PASSWORD_REGEX)
     }
 }

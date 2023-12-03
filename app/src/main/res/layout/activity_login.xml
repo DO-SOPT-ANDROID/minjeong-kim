@@ -52,7 +52,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:endIconMode="clear_text"
-            app:endIconTint="@color/secondary_1">
+            app:endIconTint="@color/gray_2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_logIn_id"
@@ -100,22 +100,26 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_logIn_doLogIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="@string/logIn_button_logIn"
+            android:textColor="@color/white"
+            android:background="@drawable/rect_storage_btn_active"
             app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
             app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"
             app:layout_constraintBottom_toTopOf="@id/btn_logIn_doSignUp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_logIn_doSignUp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:text="@string/logIn_button_signUp"
+            android:textColor="@color/white"
+            android:background="@drawable/rect_storage_btn_active"
             app:layout_constraintStart_toStartOf="@id/tv_logIn_title"
             app:layout_constraintEnd_toEndOf="@id/tv_logIn_title"
             app:layout_constraintBottom_toBottomOf="parent" />
