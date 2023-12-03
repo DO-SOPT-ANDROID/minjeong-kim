@@ -41,12 +41,12 @@ class SignUpViewModel @Inject constructor(
 
     fun isUserNameValid(): Boolean {
         val usernameMatcher = USERNAME_PATTERN.matcher(username.value.orEmpty())
-        return !username.value.isNullOrBlank() && usernameMatcher.find()
+        return username.value.isNullOrBlank() || usernameMatcher.find()
     }
 
     fun isPassWordValid(): Boolean {
         val passwordMatcher = PASSWORD_PATTERN.matcher(password.value.orEmpty())
-        return !password.value.isNullOrBlank() && passwordMatcher.find()
+        return password.value.isNullOrBlank() || passwordMatcher.find()
     }
 
     fun doSignUp(
