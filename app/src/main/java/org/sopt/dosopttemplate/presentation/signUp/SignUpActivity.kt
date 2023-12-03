@@ -32,7 +32,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     private fun checkUserNameValid() {
         viewModel.username.observe(this) {
             if (!viewModel.isUserNameValid()) {
-                binding.layoutSignUpID.error = "영문, 숫자 포함 6-10글자"
+                binding.layoutSignUpID.error = MESSAGE_USERNAME_CONDITION
             } else {
                 binding.layoutSignUpID.error = null
             }
@@ -42,7 +42,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     private fun checkPassWordValid() {
         viewModel.password.observe(this) {
             if (!viewModel.isPassWordValid()) {
-                binding.layoutSignUpPW.error = "영문, 숫자, 특수문자 포함 6-12글자"
+                binding.layoutSignUpPW.error = MESSAGE_PASSWORD_CONDITION
             } else {
                 binding.layoutSignUpPW.error = null
             }
@@ -77,5 +77,8 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     companion object {
         const val MESSAGE_SIGNUP_SUCCESS = "회원가입 성공"
         const val MESSAGE_SIGNUP_FAIL = "회원가입 실패: 모든 정보를 기입해야 합니다"
+
+        const val MESSAGE_USERNAME_CONDITION = "영문, 숫자 포함 6-10글자"
+        const val MESSAGE_PASSWORD_CONDITION = "영문, 숫자, 특수문자 포함 6-12글자"
     }
 }

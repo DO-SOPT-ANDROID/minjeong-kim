@@ -2,6 +2,7 @@ package org.sopt.dosopttemplate.presentation.signUp
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,9 +25,12 @@ class SignUpViewModel @Inject constructor(
     private val _signUpEnabled = MutableLiveData<Boolean>()
     val signUpEnabled: LiveData<Boolean> = _signUpEnabled
 
-    private val _isBtnEnabled = MutableLiveData<Boolean>()
-    val isBtnEnabled: LiveData<Boolean>
-        get() = _isBtnEnabled
+    val checkBtnEnabled = MediatorLiveData<Boolean>().apply {
+        addSource(username) { value = isSignUpValid() }
+        addSource(nickname) { value = isSignUpValid() }
+        addSource(password) { value = isSignUpValid() }
+        addSource(mbti) { value = isSignUpValid() }
+    }
 
     fun isSignUpValid(): Boolean {
         return isUserNameValid()
@@ -36,13 +40,13 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun isUserNameValid(): Boolean {
-        val usernameMatcher = USERNAME_PATTERN.matcher(username.value)
-        return usernameMatcher.find() && !username.value.isNullOrBlank()
+        val usernameMatcher = USERNAME_PATTERN.matcher(username.value.orEmpty())
+        return !username.value.isNullOrBlank() && usernameMatcher.find()
     }
 
     fun isPassWordValid(): Boolean {
-        val passwordMatcher = PASSWORD_PATTERN.matcher(password.value)
-        return passwordMatcher.find() && !password.value.isNullOrBlank()
+        val passwordMatcher = PASSWORD_PATTERN.matcher(password.value.orEmpty())
+        return !password.value.isNullOrBlank() && passwordMatcher.find()
     }
 
     fun doSignUp(

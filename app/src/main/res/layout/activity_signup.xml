@@ -205,7 +205,9 @@
             android:layout_marginBottom="50dp"
             android:layout_marginHorizontal="30dp"
             android:text="@string/signUp_bt_signUp"
-            android:background="@{viewModel.isBtnEnabled ? @drawable/rect_storage_btn_active : @drawable/rect_storage_btn_inactive}"
+            android:textColor="@{viewModel.checkBtnEnabled ? @color/white : @color/black}"
+            android:enabled="@{viewModel.checkBtnEnabled}"
+            android:background="@{viewModel.checkBtnEnabled ? @drawable/rect_storage_btn_active : @drawable/rect_storage_btn_inactive}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
