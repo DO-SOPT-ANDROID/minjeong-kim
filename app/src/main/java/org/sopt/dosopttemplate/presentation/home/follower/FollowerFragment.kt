@@ -1,13 +1,17 @@
 package org.sopt.dosopttemplate.presentation.home.follower
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseFragment
 import org.sopt.dosopttemplate.databinding.FragmentFollowerBinding
+import org.sopt.dosopttemplate.util.UiState
 
 @AndroidEntryPoint
 class FollowerFragment : BaseFragment<FragmentFollowerBinding>() {
@@ -33,8 +37,14 @@ class FollowerFragment : BaseFragment<FragmentFollowerBinding>() {
 
         followerViewModel.getFollowerList()
 
-        followerViewModel.followerList.observe(viewLifecycleOwner) {
-            followerAdapter.submitList(it)
-        }
+        followerViewModel.followerList.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    followerAdapter.submitList(uiState.data)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 }

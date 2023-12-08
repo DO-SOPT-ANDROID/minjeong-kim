@@ -1,14 +1,16 @@
 package org.sopt.dosopttemplate.presentation.signUp
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.data.repository.AuthRepository
+import org.sopt.dosopttemplate.util.UiState
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -22,8 +24,10 @@ class SignUpViewModel @Inject constructor(
     val password: MutableLiveData<String> = MutableLiveData()
     val mbti: MutableLiveData<String> = MutableLiveData()
 
-    private val _signUpEnabled = MutableLiveData<Boolean>()
-    val signUpEnabled: LiveData<Boolean> = _signUpEnabled
+    private val _signUpEnabled: MutableStateFlow<UiState<Boolean>> =
+        MutableStateFlow(UiState.Loading)
+    val signUpEnabled: StateFlow<UiState<Boolean>>
+        get() = _signUpEnabled
 
     val checkBtnEnabled = MediatorLiveData<Boolean>().apply {
         addSource(username) { value = isSignUpValid() }
@@ -60,10 +64,10 @@ class SignUpViewModel @Inject constructor(
                 nickname,
                 password
             ).onSuccess { response ->
-                _signUpEnabled.value = true
+                _signUpEnabled.value = UiState.Success(true)
                 Log.d("signUp viewModel: ", "${_signUpEnabled.value}")
             }.onFailure {
-                _signUpEnabled.value = false
+                _signUpEnabled.value = UiState.Failure(it.message.toString())
                 Log.d("signUp viewModel: ", "실패")
             }
         }

@@ -6,9 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.data.entity.AuthData
 import org.sopt.dosopttemplate.data.repository.AuthRepository
+import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,8 +22,9 @@ class LogInViewModel @Inject constructor(
     val username: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
 
-    private val _signInAuthData: MutableLiveData<AuthData> = MutableLiveData()
-    val signInAuthData: LiveData<AuthData>
+    private val _signInAuthData: MutableStateFlow<UiState<AuthData>> =
+        MutableStateFlow(UiState.Loading)
+    val signInAuthData: StateFlow<UiState<AuthData>>
         get() = _signInAuthData
 
     private val _signInEnabled = MutableLiveData<Boolean>()
@@ -35,10 +39,11 @@ class LogInViewModel @Inject constructor(
                 username,
                 password
             ).onSuccess { data ->
-                _signInAuthData.value = data
+                _signInAuthData.value = UiState.Success(data)
                 _signInEnabled.value = true
             }.onFailure {
                 Log.d("signIn viewModel: ", "실패")
+                _signInAuthData.value = UiState.Failure(it.message.toString())
                 _signInEnabled.value = false
             }
         }
