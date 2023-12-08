@@ -3,12 +3,17 @@ package org.sopt.dosopttemplate.presentation.signUp
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.logIn.LogInActivity
 import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
+import org.sopt.dosopttemplate.util.UiState
 
 @AndroidEntryPoint
 class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_signup) {
@@ -62,10 +67,19 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(R.layout.activity_sig
     }
 
     private fun initObserveSignUpEnabled() {
-        viewModel.signUpEnabled.observe(this) { response ->
-            if (response) doSignUp()
-            else makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
-        }
+        viewModel.signUpEnabled.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    doSignUp()
+                }
+
+                is UiState.Failure -> {
+                    makeSnackBar(binding.root, MESSAGE_SIGNUP_FAIL)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun doSignUp() {
