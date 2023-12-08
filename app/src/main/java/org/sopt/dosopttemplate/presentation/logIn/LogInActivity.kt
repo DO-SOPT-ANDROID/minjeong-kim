@@ -4,7 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.base.BaseActivity
 import org.sopt.dosopttemplate.data.entity.UserData
@@ -13,6 +17,7 @@ import org.sopt.dosopttemplate.presentation.home.home.HomeActivity
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.util.SnackBar.makeSnackBar
 import org.sopt.dosopttemplate.util.Toast.makeToast
+import org.sopt.dosopttemplate.util.UiState
 
 @AndroidEntryPoint
 class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
@@ -70,14 +75,23 @@ class LogInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun initObserveLogInEnabled() {
-        viewModel.signInEnabled.observe(this) { response ->
-            if (response) doLogIn()
-            else makeSnackBar(binding.root, MESSAGE_LOGIN_FAIL)
-        }
+        viewModel.signInAuthData.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    doLogIn(uiState.data.id)
+                }
+
+                is UiState.Failure -> {
+                    makeSnackBar(binding.root, MESSAGE_LOGIN_FAIL)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
-    private fun doLogIn() {
-        makeToast(applicationContext, viewModel.signInAuthData.value?.id.toString())
+    private fun doLogIn(id: String) {
+        makeToast(applicationContext, id)
         val intentToMain = Intent(this, HomeActivity::class.java)
         startActivity(intentToMain)
     }
